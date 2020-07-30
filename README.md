@@ -1,8 +1,17 @@
-## React ToDo App
+# todoapp
 
-Created to practice useContext, useReducer, and material-ui
+## Functionality
+Create a functional to-do list 
 
+### Skills Practiced
+- React js
+    - useContext, useReducer, useState
+- Material-ui
+    - useStyles, List, ListItem, Button, FormControl, Button, ect
+
+### Coming soon
+- MongoDB Atlas for data storage
+
+### Guide
 - Traversy Media expense tracker for useContext
 - WebDevSimplified for useReducer
-
-Add local MongoDB in future
