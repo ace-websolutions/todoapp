@@ -1,14 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ToDoContext } from "../context/ToDoContext";
-import {
-  FormControl,
-  TextField,
-  Button,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from "@material-ui/core";
+import { FormControl, TextField, Button, Dialog, DialogContent,
+  DialogContentText, DialogActions } from "@material-ui/core";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -29,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 function NewTodo() {
   const classes = useStyles();
   const { addTodo } = useContext(ToDoContext);
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -46,8 +39,8 @@ function NewTodo() {
         id="standard-basic"
         label="What do you have to do?"
         type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
 
       <Button
@@ -56,11 +49,11 @@ function NewTodo() {
         color="primary"
         onClick={(e) => {
           e.preventDefault();
-          if (name === "") {
+          if (title === "") {
             handleClickOpen();
           } else {
-            addTodo(name);
-            setName("");
+            addTodo({title});
+            setTitle("");
           }
         }}
         startIcon={<PostAddIcon />}

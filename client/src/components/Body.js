@@ -1,14 +1,18 @@
-import React from "react";
-import NewTodo from "./NewTodo";
-import AllTodos from "./AllTodos";
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import Register from './Register'
+import Login from './Login'
+import Todos from './Todos'
+
 
 function Body() {
-  return (
-    <>
-      <NewTodo />
-      <AllTodos />
-    </>
-  );
+    return (
+        <Switch>
+            <Route path='/register' component={Register} />
+            <Route path='/login' component={Login} />
+            <Route path='/todos' component={Todos} />
+        </Switch>
+    )
 }
 
-export default Body;
+export default Body

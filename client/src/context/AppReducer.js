@@ -1,15 +1,27 @@
 export const ACTIONS = {
+  GET_TODO: "get-todo",
   ADD_TODO: "add-todo",
   TOGGLE_TODO: "toggle-todo",
   DELETE_TODO: "delete-todo",
 };
-
+export const MESSAGE = {
+  GET_TODO:'',
+  ADD_TODO:'Todo added!',
+  EDIT_TODO:'Todo saved!',
+  DELETE_TODO:'Todo deleted.',
+  UPDATE_SETTINGS:'Settings saved!'
+}
+export const PAGES = {
+  TODOS:"todos"
+}
 export const reducer = (todos, action) => {
   switch (action.type) {
+    case ACTIONS.GET_TODO:
+      return action.payload
     case ACTIONS.ADD_TODO:
       return [
         ...todos,
-        { id: Date.now(), name: action.payload.name, complete: false },
+        { id: Date.now(), title: action.payload.title, complete: false },
       ];
     case ACTIONS.TOGGLE_TODO:
       return todos.map((todo) => {
@@ -24,3 +36,5 @@ export const reducer = (todos, action) => {
       return todos;
   }
 };
+
+export const INITIAL_TODOS = []

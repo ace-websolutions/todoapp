@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ToDoContext } from "../context/ToDoContext";
 import Todo from "./Todo";
 import { List } from "@material-ui/core";
@@ -10,11 +10,17 @@ const useStyles = makeStyles((theme) => ({
 
 function AllTodos() {
   const classes = useStyles();
-  const { todos } = useContext(ToDoContext);
+  const { todos, checkLoggedIn } = useContext(ToDoContext);
+
+  useEffect(() => {
+    checkLoggedIn();
+    // eslint-disable-next-line
+  },[todos])
+
   return (
     <List className={classes.background}>
       {todos.map((todo) => (
-        <Todo key={todo.id} todo={todo} />
+        <Todo key={todo._id} todo={todo} />
       ))}
     </List>
   );

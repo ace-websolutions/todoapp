@@ -21,23 +21,23 @@ function Todo({ todo }) {
   const classes = useStyles();
   const { toggleTodo, deleteTodo } = useContext(ToDoContext);
   return (
-    <ListItem key={todo.id} dense button>
+    <ListItem dense button>
       <ListItemIcon>
         <Checkbox
           checked={todo.complete}
-          onChange={() => toggleTodo(todo.id)}
+          onChange={() => toggleTodo(todo._id)}
           color="primary"
         />
       </ListItemIcon>
       <ListItemText
         className={todo.complete ? classes.checked : ""}
-        primary={todo.name}
+        primary={todo.title}
       />
       <ListItemSecondaryAction>
         <IconButton
           color="secondary"
           edge="end"
-          onClick={() => deleteTodo(todo.id)}
+          onClick={() => deleteTodo(todo._id)}
         >
           <DeleteIcon />
         </IconButton>
