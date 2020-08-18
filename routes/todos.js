@@ -6,7 +6,6 @@ const Todos = require('../models/Todos');
 router.get('/todos', auth, async (req, res) => {
     try{
         const todos = await Todos.find({userId: req.user});
-        console.log(todos)
         return res.status(200).json(todos)
     }catch(err){
         return res.status(500).json({
