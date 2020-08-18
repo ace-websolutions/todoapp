@@ -5,11 +5,11 @@ import Nav from "./components/Nav";
 import Body from "./components/Body";
 import { Grid, Paper } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider, makeStyles } from "@material-ui/core/styles";
-import lime from '@material-ui/core/colors/lime';
+import green from '@material-ui/core/colors/green';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 
 function App() {
-  const [primary, setPrimary] = useState(lime)
+  const [primary, setPrimary] = useState(green)
   const [secondary, setSecondary] = useState(blueGrey)
   const [dark, setDark] = useState(false)
 

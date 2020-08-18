@@ -17,10 +17,10 @@ router.get('/todos', auth, async (req, res) => {
 
 router.post('/todos', auth, async (req, res) => {
     try{
-        const { title, complete } = req.body;
+        const { title } = req.body;
         const newTodo = new Todos({
             title,
-            complete,
+            complete:false,
             userId:req.user
         })
         const todo = await newTodo.save();
@@ -49,7 +49,7 @@ router.delete('/todos/:id', auth, async (req, res) => {
     }
 })
 
-router.patch('/todos/:id', auth, async (req, res) => {
+router.post('/todos/:id', auth, async (req, res) => {
     try{
         const todo = await Todos.findOne({userId: req.user, _id: req.params.id});
         if(!todo){
@@ -57,13 +57,8 @@ router.patch('/todos/:id', auth, async (req, res) => {
                 error:"No Todo found"
             })
         }
-        if (req.body.title != null) {
-        todo.title = req.body.title;
-        }
-        if (req.body.complete != null) {
-        todo.complete = req.body.complete;
-        }
-        const updatedTodo = await Todo.save();
+        todo.complete = !todo.complete;
+        const updatedTodo = await todo.save();
         return res.status(201).json(updatedTodo)
     }catch(err){
         return res.status(500).json({

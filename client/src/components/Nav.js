@@ -152,7 +152,7 @@ function Nav({ dark, setDark, primary, setPrimary, secondary, setSecondary }) {
     })
     localStorage.removeItem("x-auth-token")
     dispatch({type: ACTIONS.GET_TODO, payload: []});
-    setPrimary(lime)
+    setPrimary(green)
     setSecondary(blueGrey)
     history.push("/login");
   }
@@ -169,7 +169,6 @@ const closeSettingsMenu = () => {
 const changePrimary = async (event, id) => {
     setPrimary(event.target.value)
     const user = {...userData.user, primary: storeColor(event.target.value)}
-    console.log(userData)
     try{
         await axios.post(`http://localhost:5000/api/v1/users/${id}`, user, configData)
         setUserData({...userData, user})

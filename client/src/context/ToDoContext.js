@@ -58,9 +58,8 @@ const configData = {
     }
   }
   const toggleTodo = async (id) => {
-    const todo = {}
     try{
-      await axios.post(`http://localhost:5000/api/v1/todos/${id}`, todo, configData)
+      await axios.post(`http://localhost:5000/api/v1/todos/${id}`, null, configData)
       dispatch({ type: ACTIONS.TOGGLE_TODO, payload: id });
     }catch(err){
       console.log(err)
@@ -89,7 +88,9 @@ const configData = {
         setSnackMessage,
         userData,
         setUserData,
-        checkLoggedIn
+        checkLoggedIn,
+        config,
+        configData
       }}
     >
       {children}
