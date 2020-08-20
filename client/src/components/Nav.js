@@ -152,6 +152,7 @@ function Nav({ dark, setDark, primary, setPrimary, secondary, setSecondary }) {
     })
     localStorage.removeItem("x-auth-token")
     dispatch({type: ACTIONS.GET_TODO, payload: []});
+    setDark(false);
     setPrimary(green)
     setSecondary(yellow)
     history.push("/login");
