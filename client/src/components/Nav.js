@@ -170,7 +170,7 @@ const changePrimary = async (event, id) => {
     setPrimary(event.target.value)
     const user = {...userData.user, primary: storeColor(event.target.value)}
     try{
-        await axios.post(`http://localhost:5000/api/v1/users/${id}`, user, configData)
+        await axios.post(`/api/v1/users/${id}`, user, configData)
         setUserData({...userData, user})
         setSnackMessage(MESSAGE.UPDATE_SETTINGS);
     }catch(err){
@@ -181,7 +181,7 @@ const changeSecondary = async (event, id) => {
     setSecondary(event.target.value)
     const user = {...userData.user, secondary: storeColor(event.target.value)}
     try{
-        await axios.post(`http://localhost:5000/api/v1/users/${id}`, user, configData)
+        await axios.post(`/api/v1/users/${id}`, user, configData)
         setUserData({...userData, user})
         setSnackMessage(MESSAGE.UPDATE_SETTINGS);
     }catch(err){
@@ -193,7 +193,7 @@ const changeDark = async (id) => {
     setDark(!dark)
     const user = {...userData.user, theme: !dark}
     try{
-        await axios.post(`http://localhost:5000/api/v1/users/${id}`, user, configData)
+        await axios.post(`/api/v1/users/${id}`, user, configData)
         setUserData({...userData, user})
         setSnackMessage(MESSAGE.UPDATE_SETTINGS);
     }catch(err){

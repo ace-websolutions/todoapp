@@ -30,9 +30,9 @@ const configData = {
         localStorage.setItem('x-auth-token', "")
         token = ""
       }
-      const tokenRes = await axios.post('http://localhost:5000/api/v1/users/tokenValid', null, {headers: {'x-auth-token':token}})
+      const tokenRes = await axios.post('/api/v1/users/tokenValid', null, {headers: {'x-auth-token':token}})
       if(tokenRes.data){
-        const userRes = await axios.get('http://localhost:5000/api/v1/users/', {headers: {'x-auth-token':token}})
+        const userRes = await axios.get('/api/v1/users/', {headers: {'x-auth-token':token}})
         setUserData({...userData, token, user:userRes.data})
         getTodo();
       }
@@ -42,7 +42,7 @@ const configData = {
   }
   const getTodo = async () => {
     try{
-      const res = await axios.get('http://localhost:5000/api/v1/todos', config)
+      const res = await axios.get('/api/v1/todos', config)
       dispatch({type: ACTIONS.GET_TODO, payload: res.data})
     }catch(err){
       console.log(err);
@@ -50,7 +50,7 @@ const configData = {
   }
   const addTodo = async (todo) => {
     try{
-      const res = await axios.post('http://localhost:5000/api/v1/todos', todo, configData)
+      const res = await axios.post('/api/v1/todos', todo, configData)
       dispatch({ type: ACTIONS.ADD_TODO, payload: res.data});
       setSnackMessage(MESSAGE.ADD_TODO)
     }catch(err){
@@ -59,7 +59,7 @@ const configData = {
   }
   const toggleTodo = async (id) => {
     try{
-      await axios.post(`http://localhost:5000/api/v1/todos/${id}`, null, configData)
+      await axios.post(`/api/v1/todos/${id}`, null, configData)
       dispatch({ type: ACTIONS.TOGGLE_TODO, payload: id });
     }catch(err){
       console.log(err)
@@ -67,7 +67,7 @@ const configData = {
   }
   const deleteTodo = async (id) => {
     try{
-      await axios.delete(`http://localhost:5000/api/v1/todos/${id}`, config)
+      await axios.delete(`/api/v1/todos/${id}`, config)
       dispatch({ type: ACTIONS.DELETE_TODO, payload: id });
       setSnackMessage(MESSAGE.DELETE_TODO)
     }catch(err){
