@@ -153,7 +153,7 @@ function Nav({ dark, setDark, primary, setPrimary, secondary, setSecondary }) {
     localStorage.removeItem("x-auth-token")
     dispatch({type: ACTIONS.GET_TODO, payload: []});
     setPrimary(green)
-    setSecondary(blueGrey)
+    setSecondary(yellow)
     history.push("/login");
   }
   const openTodos = () => {
@@ -229,7 +229,7 @@ const changeDark = async (id) => {
         </Drawer></>)}
      <Typography variant='h4' className={classes.title}>{!userData.user ? 'Todo List' : `${userData.user.firstName}'s Todos`}</Typography>
         {!userData.user ? (<ButtonGroup><Button onClick={register}>Register</Button>
-        <Button onClick={login}>Login</Button></ButtonGroup>) : (<Button variant='outlined' onClick={logout}>Log out</Button>)}
+        <Button onClick={login}>Login</Button></ButtonGroup>) : (<Button variant='contained' onClick={logout}>Log out</Button>)}
         <Dialog className={classes.menu} open={openSettings} onClose={closeSettingsMenu} fullWidth maxWidth='sm'>
             <DialogTitle>Settings</DialogTitle>
             <Divider />

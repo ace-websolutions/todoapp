@@ -6,6 +6,7 @@ import AllTodos from "./AllTodos";
 const useStyles = makeStyles((theme) => ({
   center: {
     display:'flex',
+    flexDirection: 'column',
     justifyContent: "center",
     alignItems: 'center'
     },

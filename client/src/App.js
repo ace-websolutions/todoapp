@@ -3,14 +3,14 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ToDoProvider } from "./context/ToDoContext";
 import Nav from "./components/Nav";
 import Body from "./components/Body";
-import { Grid, Paper } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import green from '@material-ui/core/colors/green';
-import blueGrey from '@material-ui/core/colors/blueGrey';
+import yellow from '@material-ui/core/colors/yellow';
 
 function App() {
   const [primary, setPrimary] = useState(green)
-  const [secondary, setSecondary] = useState(blueGrey)
+  const [secondary, setSecondary] = useState(yellow)
   const [dark, setDark] = useState(false)
 
   const themeCustom= createMuiTheme({
@@ -24,7 +24,7 @@ function App() {
     paper:{
       minHeight: '100vh',
       height:'100%',
-      backgroundColor: '#f6f6f6',
+      backgroundColor: dark ? themeCustom.palette.background.default:'#e3e3e3',
       display:'flex',
       flexDirection: 'column',
     },
