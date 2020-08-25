@@ -37,7 +37,7 @@ function App() {
         <ThemeProvider theme={themeCustom}>
           <Paper className={classes.paper}>
               <Nav dark={dark} setDark={setDark} primary={primary} setPrimary={setPrimary} secondary={secondary} setSecondary={setSecondary} />
-                  <Body />
+                  <Body dark={dark} />
             </Paper>
         </ThemeProvider>
       </ToDoProvider>

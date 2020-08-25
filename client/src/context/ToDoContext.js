@@ -7,6 +7,7 @@ export const ToDoContext = createContext();
 export function ToDoProvider({ children }) {
   const [todos, dispatch] = useReducer(reducer, INITIAL_TODOS);
   const [loading, setLoading] = useState(false)
+  const [update, setUpdate] = useState(0)
   const [snackMessage, setSnackMessage] = useState(undefined)
   const [userData, setUserData] = useState({token: undefined, user: undefined})
 
@@ -78,19 +79,10 @@ const configData = {
   return (
     <ToDoContext.Provider
       value={{
-        todos,
-        dispatch,
-        getTodo,
-        addTodo,
-        toggleTodo,
-        deleteTodo,
-        snackMessage,
-        setSnackMessage,
-        userData,
-        setUserData,
-        checkLoggedIn,
-        config,
-        configData
+        todos, dispatch, getTodo, addTodo,toggleTodo,
+        deleteTodo, snackMessage, setSnackMessage,
+        userData, setUserData, checkLoggedIn, config,
+        configData, update, setUpdate
       }}
     >
       {children}

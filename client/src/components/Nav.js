@@ -5,7 +5,7 @@ import { ToDoContext } from '../context/ToDoContext'
 import { ACTIONS, MESSAGE } from '../context/AppReducer'
 import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, 
     ListItemIcon, ListItemText, makeStyles, Switch, Dialog, DialogTitle, Divider, 
-    MenuItem, Select, ButtonGroup, Button, Snackbar } from '@material-ui/core'
+    MenuItem, Select, Button, Snackbar } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert';
 import MenuIcon from '@material-ui/icons/Menu';
 import ListAltIcon from '@material-ui/icons/ListAlt';
@@ -139,12 +139,6 @@ function Nav({ dark, setDark, primary, setPrimary, secondary, setSecondary }) {
     // eslint-disable-next-line
   }, [userData])
 
-  const register = () => {
-    history.push("/register");
-  }
-  const login = () => {
-    history.push("/login");
-  }
   const logout = () => {
     setUserData({
         token:undefined,
@@ -229,8 +223,7 @@ const changeDark = async (id) => {
             </List>
         </Drawer></>)}
      <Typography variant='h4' className={classes.title}>{!userData.user ? 'Todo List' : `${userData.user.firstName}'s Todos`}</Typography>
-        {!userData.user ? (<ButtonGroup><Button onClick={register}>Register</Button>
-        <Button onClick={login}>Login</Button></ButtonGroup>) : (<Button variant='contained' onClick={logout}>Log out</Button>)}
+        {userData.user && (<Button variant='contained' onClick={logout}>Log out</Button>)}
         <Dialog className={classes.menu} open={openSettings} onClose={closeSettingsMenu} fullWidth maxWidth='sm'>
             <DialogTitle>Settings</DialogTitle>
             <Divider />

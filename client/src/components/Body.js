@@ -6,13 +6,13 @@ import Login from './Login'
 import Todos from './Todos'
 
 
-function Body() {
+function Body({ dark }) {
     return (
         <Switch>
             <Route exact path="/" component={Landing} />
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
-            <Route path='/todos' component={Todos} />
+            <Route path='/todos' render={(props) => <Todos {...props} dark={dark} />}></Route>
         </Switch>
     )
 }

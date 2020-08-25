@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ToDoContext } from "../context/ToDoContext";
-import { FormControl, TextField, Button, Dialog, DialogContent,
-  DialogContentText, DialogActions } from "@material-ui/core";
+import { TextField, IconButton,  Button, Dialog, 
+  DialogContent, DialogContentText, DialogActions } from "@material-ui/core";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -10,18 +10,21 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(3),
+    borderRadius: '15px 0px 16px 0px'
   },
   label: {
     flexGrow: 1,
   },
   button: {
-    marginLeft: "1rem",
+    marginLeft: theme.spacing(2),
   },
 }));
 
 function NewTodo() {
   const classes = useStyles();
-  const { addTodo } = useContext(ToDoContext);
+  const { addTodo, update, setUpdate } = useContext(ToDoContext);
   const [title, setTitle] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -33,7 +36,16 @@ function NewTodo() {
     setOpen(false);
   };
   return (
-    <FormControl className={classes.form}>
+    <form className={classes.form} onSubmit={(e) => {
+      e.preventDefault();
+      if (title === "") {
+        handleClickOpen();
+      } else {
+        addTodo({title});
+        setUpdate(update+1)
+        setTitle("");
+      }
+    }}>
       <TextField
         className={classes.label}
         id="standard-basic"
@@ -42,24 +54,10 @@ function NewTodo() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-
-      <Button
-        className={classes.button}
-        variant="contained"
-        color="primary"
-        onClick={(e) => {
-          e.preventDefault();
-          if (title === "") {
-            handleClickOpen();
-          } else {
-            addTodo({title});
-            setTitle("");
-          }
-        }}
-        startIcon={<PostAddIcon />}
-      >
-        Add
-      </Button>
+      <IconButton className={classes.button} color="secondary"
+        type='submit'>
+          <PostAddIcon />
+        </IconButton>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -71,12 +69,13 @@ function NewTodo() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} 
+          variant="contained" color="primary">
             Okay
           </Button>
         </DialogActions>
       </Dialog>
-    </FormControl>
+    </form>
   );
 }
 
