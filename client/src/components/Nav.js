@@ -95,45 +95,45 @@ const storeColor = (color) => {
     if(color === grey) return 'Grey'
     if(color === blueGrey) return 'Blue-Grey'
 }
-const useStyles = makeStyles((theme) => ({
-    toolBar:{
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        position:'relative',
-        [theme.breakpoints.down("400")]: {
-            flexWrap: 'wrap',
-        }
-    },
-    title:{
-        paddingTop: theme.spacing(1),
-        color: theme.palette.text.primary,
-        [theme.breakpoints.down("400")]: {
-            order: '3',
-            margin: 'auto'
-        }
-    },
-    switch:{
-        marginLeft: 'auto'
-    },
-    list:{
-        minWidth: 225,
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        backgroundColor: theme.palette.primary.light
-    },
-    menu:{
-        overflow:'hidden',
-    },
-    text: {
-        zIndex: 10,
-        color: theme.palette.text.primary,
-        textDecoration: "none",
-      },
-}))
-
 function Nav({ dark, setDark, primary, setPrimary, secondary, setSecondary }) {
+    const useStyles = makeStyles((theme) => ({
+        toolBar:{
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            position:'relative',
+            [theme.breakpoints.down("400")]: {
+                flexWrap: 'wrap',
+            }
+        },
+        title:{
+            paddingTop: theme.spacing(1),
+            color: theme.palette.text.primary,
+            [theme.breakpoints.down("400")]: {
+                order: '3',
+                margin: 'auto'
+            }
+        },
+        switch:{
+            marginLeft: 'auto'
+        },
+        list:{
+            minWidth: 225,
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            backgroundColor: dark ?  theme.palette.primary.dark : theme.palette.primary.light
+        },
+        menu:{
+            overflow:'hidden',
+        },
+        text: {
+            zIndex: 10,
+            color: theme.palette.text.primary,
+            textDecoration: "none",
+          },
+    }))
+    
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
