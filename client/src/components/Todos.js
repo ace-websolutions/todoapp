@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, makeStyles, Divider } from '@material-ui/core'
+import { Grid, makeStyles, Container } from '@material-ui/core'
 import NewTodo from "./NewTodo";
 import AllTodos from "./AllTodos";
 
@@ -20,15 +20,14 @@ function Todos({ dark }) {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.body}>
-      <Grid item xs={1} sm={3} />
-        <Grid container item xs={10} sm={6} className={classes.center}>
+    <Container maxWidth='lg'>
+      <Grid container className={classes.center}>
+        <Grid item xs={12} sm={8} >
           <NewTodo />
-          <Divider />
           <AllTodos />
         </Grid>
-       <Grid item xs={1} sm={3} />
-     </Grid>
+      </Grid>
+    </Container>
   );
 }
 

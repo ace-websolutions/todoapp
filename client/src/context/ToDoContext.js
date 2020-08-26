@@ -6,7 +6,7 @@ export const ToDoContext = createContext();
 
 export function ToDoProvider({ children }) {
   const [todos, dispatch] = useReducer(reducer, INITIAL_TODOS);
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const [update, setUpdate] = useState(0)
   const [snackMessage, setSnackMessage] = useState(undefined)
   const [userData, setUserData] = useState({token: undefined, user: undefined})

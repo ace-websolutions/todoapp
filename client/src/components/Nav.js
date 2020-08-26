@@ -10,6 +10,8 @@ import Alert from '@material-ui/lab/Alert';
 import MenuIcon from '@material-ui/icons/Menu';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import SettingsIcon from '@material-ui/icons/Settings';
+import BugReportIcon from '@material-ui/icons/BugReport';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import red from '@material-ui/core/colors/red';
 import pink from '@material-ui/core/colors/pink';
 import purple from '@material-ui/core/colors/purple';
@@ -97,11 +99,18 @@ const useStyles = makeStyles((theme) => ({
     toolBar:{
         justifyContent: 'space-between',
         alignItems: 'center',
-        position:'relative'
+        position:'relative',
+        [theme.breakpoints.down("400")]: {
+            flexWrap: 'wrap',
+        }
     },
     title:{
         paddingTop: theme.spacing(1),
-        color: theme.palette.text.primary
+        color: theme.palette.text.primary,
+        [theme.breakpoints.down("400")]: {
+            order: '3',
+            margin: 'auto'
+        }
     },
     switch:{
         marginLeft: 'auto'
@@ -111,15 +120,20 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         backgroundColor: theme.palette.primary.light
     },
     menu:{
         overflow:'hidden',
     },
-    settings:{
-        marginTop:'auto'
-    }
+    pages:{
+       marginBottom: theme.spacing(20)
+    },
+    text: {
+        zIndex: 10,
+        color: theme.palette.text.primary,
+        textDecoration: "none",
+      },
 }))
 
 function Nav({ dark, setDark, primary, setPrimary, secondary, setSecondary }) {
@@ -131,24 +145,26 @@ function Nav({ dark, setDark, primary, setPrimary, secondary, setSecondary }) {
   const history = useHistory();
   
   useEffect(() => {
-    if(userData.user) return setPrimary(getColor(userData.user.primary))
-    // eslint-disable-next-line
-    if(userData.user) return setSecondary(getColor(userData.user.secondary))
-    // eslint-disable-next-line
-    if(userData.user) return setDark(userData.user.theme)
+      updateTheme();
     // eslint-disable-next-line
   }, [userData])
-
-  const logout = () => {
+  const updateTheme = async () => {
+    if(userData.user) {
+        setPrimary(getColor(userData.user.primary))
+        setSecondary(getColor(userData.user.secondary))
+        setDark(userData.user.theme)
+    } 
+  }
+  const logout = async() => {
     setUserData({
         token:undefined,
         user: undefined
     })
-    localStorage.removeItem("x-auth-token")
-    dispatch({type: ACTIONS.GET_TODO, payload: []});
-    setDark(false);
-    setPrimary(green)
-    setSecondary(yellow)
+    await localStorage.removeItem("x-auth-token")
+    await dispatch({type: ACTIONS.GET_TODO, payload: []});
+    await setDark(false);
+    await setPrimary(green)
+    await setSecondary(yellow)
     history.push("/login");
   }
   const openTodos = () => {
@@ -203,23 +219,42 @@ const changeDark = async (id) => {
             <Alert severity="success">{snackMessage}</Alert>
     </Snackbar>
     <Toolbar className={classes.toolBar}>
-        {!userData.user ? '' : (<><IconButton className={classes.menuIcon} onClick={() => setOpen(true)}>
+        {userData.user && (<><IconButton className={classes.menuIcon} onClick={() => setOpen(true)}>
             <MenuIcon />
         </IconButton>
         <Drawer anchor='left' open={open} onClose={() => setOpen(false)}>
             <List className={classes.list}>
-                <ListItem button onClick={openTodos}>
+                <ListItem button onClick={openTodos} className={classes.pages}>
                     <ListItemIcon>
                         <ListAltIcon />
                     </ListItemIcon>
                     <ListItemText primary='Todos' />
                     </ListItem>
-                <ListItem button onClick={openSettingsMenu} className={classes.settings}>
+                    <Divider />
+                <ListItem button onClick={openSettingsMenu}>
                     <ListItemIcon>
                         <SettingsIcon />
                     </ListItemIcon>
                     <ListItemText primary="Settings"/>
                 </ListItem>
+                <a href="https://github.com/nick-dasto/todoapp/issues" target="_blank" 
+                    rel="noopener noreferrer" className={classes.text}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <BugReportIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Report Bug"/>
+                    </ListItem>
+                </a>
+                <a href="https://github.com/nick-dasto" target="_blank" 
+                    rel="noopener noreferrer" className={classes.text}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <GitHubIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="View More"/>
+                    </ListItem>
+                </a>
             </List>
         </Drawer></>)}
      <Typography variant='h4' className={classes.title}>{!userData.user ? 'Todo List' : `${userData.user.firstName}'s Todos`}</Typography>

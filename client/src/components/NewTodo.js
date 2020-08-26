@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { ToDoContext } from "../context/ToDoContext";
-import { TextField, IconButton,  Button, Dialog, 
+import { TextField, IconButton,  Button, Dialog,
   DialogContent, DialogContentText, DialogActions } from "@material-ui/core";
-import PostAddIcon from "@material-ui/icons/PostAdd";
+import AddCircle from "@material-ui/icons/AddCircle";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -12,13 +12,22 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(3),
-    borderRadius: '15px 0px 16px 0px'
+    borderRadius: '15px 0px 16px 0px',
+    [theme.breakpoints.down("425")]: {
+      flexDirection: 'column',
+      justifyContent: 'space-evenly'
+  }
+
   },
   label: {
     flexGrow: 1,
   },
   button: {
     marginLeft: theme.spacing(2),
+    [theme.breakpoints.down("425")]: {
+      margin: 'auto'
+  }
+
   },
 }));
 
@@ -55,8 +64,8 @@ function NewTodo() {
         onChange={(e) => setTitle(e.target.value)}
       />
       <IconButton className={classes.button} color="secondary"
-        type='submit'>
-          <PostAddIcon />
+        type='submit' size='medium'>
+          <AddCircle />
         </IconButton>
       <Dialog
         open={open}
@@ -69,7 +78,7 @@ function NewTodo() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} 
+          <Button onClick={handleClose}
           variant="contained" color="primary">
             Okay
           </Button>

@@ -27,6 +27,8 @@ function App() {
       backgroundColor: dark ? themeCustom.palette.background.default:'#e3e3e3',
       display:'flex',
       flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
     },
   }))
   const classes = useStyles();
