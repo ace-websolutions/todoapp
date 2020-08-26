@@ -53,6 +53,7 @@ const configData = {
     try{
       const res = await axios.post('/api/v1/todos', todo, configData)
       dispatch({ type: ACTIONS.ADD_TODO, payload: res.data});
+      setUpdate(update+1)
       setSnackMessage(MESSAGE.ADD_TODO)
     }catch(err){
       console.log(err);
@@ -62,6 +63,7 @@ const configData = {
     try{
       await axios.post(`/api/v1/todos/${id}`, null, configData)
       dispatch({ type: ACTIONS.TOGGLE_TODO, payload: id });
+      setUpdate(update+1)
     }catch(err){
       console.log(err)
     }
@@ -70,6 +72,7 @@ const configData = {
     try{
       await axios.delete(`/api/v1/todos/${id}`, config)
       dispatch({ type: ACTIONS.DELETE_TODO, payload: id });
+      setUpdate(update+1)
       setSnackMessage(MESSAGE.DELETE_TODO)
     }catch(err){
       console.log(err)

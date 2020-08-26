@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 function AllTodos() {
   const classes = useStyles();
   const { todos, checkLoggedIn, toggleTodo, deleteTodo,
-    update, setUpdate } = useContext(ToDoContext);
+    update } = useContext(ToDoContext);
 
   useEffect(() => {
     checkLoggedIn();
@@ -46,17 +46,10 @@ function AllTodos() {
     <List className={classes.background}>
       {todos.map((todo) => (
         <ListItem key={`${todos.indexOf(todo)}+${todo._id}`} dense 
-          button onClick={() => {
-            toggleTodo(todo._id)
-            setUpdate(update+1)
-          }}
+          button onClick={() => toggleTodo(todo._id)}
           className={classes.item}>
         <ListItemIcon>
-          <Checkbox checked={todo.complete} onChange={() => {
-            toggleTodo(todo._id) 
-            setUpdate(update+1)
-          }}
-            color="secondary" />
+          <Checkbox checked={todo.complete} color="secondary" />
         </ListItemIcon>
         <ListItemText
           className={todo.complete ? classes.checked : ""}

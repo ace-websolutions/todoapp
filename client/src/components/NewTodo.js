@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 function NewTodo() {
   const classes = useStyles();
-  const { addTodo, update, setUpdate } = useContext(ToDoContext);
+  const { addTodo } = useContext(ToDoContext);
   const [title, setTitle] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -51,7 +51,6 @@ function NewTodo() {
         handleClickOpen();
       } else {
         addTodo({title});
-        setUpdate(update+1)
         setTitle("");
       }
     }}>

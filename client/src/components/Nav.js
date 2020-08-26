@@ -120,14 +120,11 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         backgroundColor: theme.palette.primary.light
     },
     menu:{
         overflow:'hidden',
-    },
-    pages:{
-       marginBottom: theme.spacing(20)
     },
     text: {
         zIndex: 10,
@@ -224,13 +221,16 @@ const changeDark = async (id) => {
         </IconButton>
         <Drawer anchor='left' open={open} onClose={() => setOpen(false)}>
             <List className={classes.list}>
+                <List>
                 <ListItem button onClick={openTodos} className={classes.pages}>
                     <ListItemIcon>
                         <ListAltIcon />
                     </ListItemIcon>
                     <ListItemText primary='Todos' />
                     </ListItem>
-                    <Divider />
+                </List>
+                <List>
+                <Divider />
                 <ListItem button onClick={openSettingsMenu}>
                     <ListItemIcon>
                         <SettingsIcon />
@@ -255,6 +255,7 @@ const changeDark = async (id) => {
                         <ListItemText primary="View More"/>
                     </ListItem>
                 </a>
+                </List>
             </List>
         </Drawer></>)}
      <Typography variant='h4' className={classes.title}>{!userData.user ? 'Todo List' : `${userData.user.firstName}'s Todos`}</Typography>
