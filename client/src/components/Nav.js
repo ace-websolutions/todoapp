@@ -97,12 +97,20 @@ const storeColor = (color) => {
 }
 function Nav({ dark, setDark, primary, setPrimary, secondary, setSecondary }) {
     const useStyles = makeStyles((theme) => ({
+        appBar:{
+            [theme.breakpoints.up('xl')]:{
+                alignItems:'center',
+            }
+        },
         toolBar:{
             justifyContent: 'space-between',
             alignItems: 'center',
             position:'relative',
             [theme.breakpoints.down("400")]: {
                 flexWrap: 'wrap',
+            },
+            [theme.breakpoints.up('xl')]:{
+                width:1260,
             }
         },
         title:{
@@ -210,7 +218,7 @@ const changeDark = async (id) => {
 
 }
   return (
-    <AppBar position='static'>
+    <AppBar position='static' className={classes.appBar}>
     <Snackbar open={snackMessage !== undefined} anchorOrigin={{vertical:'top', horizontal:'center'}} 
         variant="filled" autoHideDuration={3000} onClose={() => setSnackMessage(undefined)}>
             <Alert severity="success">{snackMessage}</Alert>

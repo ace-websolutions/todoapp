@@ -12,7 +12,7 @@ function Todos({ dark }) {
       alignItems: 'center',
       backgroundColor: dark ? theme.palette.primary[600]:theme.palette.primary[300],
       padding:theme.spacing(3),
-      height:'100vh'
+      height:'100%'
       },
   }))
 
